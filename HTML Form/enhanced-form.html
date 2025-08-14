@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced HTML5 Form Demo</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            min-height: 100vh;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        header p {
+            margin: 0.5rem 0 0 0;
+            opacity: 0.9;
+        }
+        
+        main {
+            padding: 2rem;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Lists Styling */
+        ul, ol {
+            padding-left: 2rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+        
+        tr:hover {
+            background: #f5f5f5;
+        }
+        
+        /* Media Styling */
+        .media-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .media-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        video, audio {
+            width: 100%;
+            border-radius: 5px;
+        }
+        
+        /* Form Styling */
+        form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        fieldset {
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            background: #f8f9fa;
+        }
+        
+        legend {
+            font-weight: bold;
+            color: #2c3e50;
+            padding: 0 1rem;
+            background: white;
+            border-radius: 20px;
+            border: 2px solid #3498db;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
+        
+        input:invalid {
+            border-color: #e74c3c;
+        }
+        
+        input:valid {
+            border-color: #27ae60;
+        }
+        
+        .radio-group, .checkbox-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .radio-group label, .checkbox-group label {
+            display: flex;
+            align-items: center;
+            font-weight: normal;
+            cursor: pointer;
+        }
+        
+        .radio-group input, .checkbox-group input {
+            width: auto;
+            margin-right: 0.5rem;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            width: auto;
+            display: inline-block;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+        }
+        
+        .required {
+            color: #e74c3c;
+        }
+        
+        small {
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Enhanced HTML5 Demo</h1>
+            <p>Showcasing Lists, Tables, Media & Advanced Forms</p>
+        </header>
+        
+        <main>
+            <!-- Lists Section -->
+            <section>
+                <h2>📋 Lists Demonstration</h2>
+                
+                <h3>Unordered List - Key Features</h3>
+                <ul class="feature-list">
+                    <li><strong>Semantic HTML5:</strong> Using proper semantic elements for better accessibility and SEO</li>
+                    <li><strong>Form Validation:</strong> Native HTML5 validation without JavaScript</li>
+                    <li><strong>Responsive Design:</strong> Mobile-friendly layout that adapts to different screen sizes</li>
+                    <li><strong>Accessibility:</strong> Proper labels, fieldsets, and ARIA attributes</li>
+                </ul>
+                
+                <h3>Ordered List - Implementation Steps</h3>
+                <ol>
+                    <li>Plan the page structure with semantic HTML5 elements</li>
+                    <li>Create comprehensive lists showcasing different content types</li>
+                    <li>Build accessible tables with proper headers and captions</li>
+                    <li>Embed various media elements using HTML5 semantic tags</li>
+                    <li>Design forms with extensive validation using HTML5 attributes</li>
+                    <li>Apply CSS styling for enhanced user experience</li>
+                </ol>
+                
+                <h3>Definition List - HTML5 Form Attributes</h3>
+                <dl>
+                    <dt><strong>required</strong></dt>
+                    <dd>Specifies that an input field must be filled out before submitting the form</dd>
+                    
+                    <dt><strong>pattern</strong></dt>
+                    <dd>Specifies a regular expression that the input field's value must match</dd>
+                    
+                    <dt><strong>minlength/maxlength</strong></dt>
+                    <dd>Specifies the minimum and maximum number of characters allowed in an input field</dd>
+                    
+                    <dt><strong>autocomplete</strong></dt>
+                    <dd>Specifies whether form fields should have autocomplete enabled</dd>
+                </dl>
+            </section>
+            
+            <!-- Tables Section -->
+            <section>
+                <h2>📊 Tables Demonstration</h2>
+                
+                <h3>HTML5 Input Types Comparison</h3>
+                <table>
+                    <caption>Comprehensive overview of HTML5 input types and their validation capabilities</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Input Type</th>
+                            <th scope="col">Purpose</th>
+                            <th scope="col">Built-in Validation</th>
+                            <th scope="col">Browser Support</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>email</td>
+                            <td>Email address input</td>
+                            <td>Email format validation</td>
+                            <td>Excellent</td>
+                        </tr>
+                        <tr>
+                            <td>url</td>
+                            <td>URL input</td>
+                            <td>URL format validation</td>
+                            <td>Very Good</td>
+                        </tr>
+                        <tr>
+                            <td>tel</td>
+                            <td>Telephone number</td>
+                            <td>Mobile keyboard optimization</td>
+                            <td>Good</td>
+                        </tr>
+                        <tr>
+                            <td>number</td>
+                            <td>Numeric input</td>
+                            <td>Min/max range validation</td>
+                            <td>Excellent</td>
+                        </tr>
+                        <tr>
+                            <td>date</td>
+                            <td>Date picker</td>
+                            <td>Date format validation</td>
+                            <td>Very Good</td>
+                        </tr>
+                        <tr>
+                            <td>time</td>
+                            <td>Time picker</td>
+                            <td>Time format validation</td>
+                            <td>Good</td>
+                        </tr>
+                        <tr>
+                            <td>color</td>
+                            <td>Color picker</td>
+                            <td>Color format validation</td>
+                            <td>Good</td>
+                        </tr>
+                        <tr>
+                            <td>range</td>
+                            <td>Slider input</td>
+                            <td>Min/max range validation</td>
+                            <td>Excellent</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <!-- Media Section -->
+            <section>
+                <h2>🎬 Media Elements Demonstration</h2>
+                
+                <div class="media-container">
+                    <div class="media-item">
+                        <h3>HTML5 Video Element</h3>
+                        <video controls width="100%" poster="https://via.placeholder.com/400x225/3498db/ffffff?text=Video+Poster">
+                            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                            <source src="https://www.w3schools.com/html/mov_bbb.ogg" type="video/ogg">
+                            <p>Your browser does not support HTML5 video. <a href="https://www.w3schools.com/html/mov_bbb.mp4">Download the video</a> instead.</p>
+                        </video>
+                        <p><small>Demonstrates HTML5 video with multiple source formats and fallback content</small></p>
+                    </div>
+                    
+                    <div class="media-item">
+                        <h3>HTML5 Audio Element</h3>
+                        <audio controls>
+                            <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
+                            <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" type="audio/mpeg">
+                            <p>Your browser does not support HTML5 audio. <a href="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3">Download the audio file</a> instead.</p>
+                        </audio>
+                        <p><small>HTML5 audio element with multiple format support and accessibility fallbacks</small></p>
+                    </div>
+                </div>
+                
+                <h3>Embedded Content</h3>
+                <figure>
+                    <img src="https://via.placeholder.com/800x400/2c3e50/ffffff?text=HTML5+Semantic+Structure" 
+                         alt="HTML5 semantic structure diagram showing header, nav, main, section, article, aside, and footer elements" 
+                         width="800" height="400">
+                    <figcaption>HTML5 semantic structure provides better accessibility and SEO optimization</figcaption>
+                </figure>
+            </section>
+            
+            <!-- Form Section -->
+            <section>
+                <h2>📝 Advanced HTML5 Form</h2>
+                
+                <form action="/submit-form" method="post" novalidate autocomplete="on">
+                    
+                    <!-- Personal Information Fieldset -->
+                    <fieldset>
+                        <legend>Personal Information</legend>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name <span class="required">*</span></label>
+                                <input type="text" 
+                                       id="firstName" 
+                                       name="firstName" 
+                                       required 
+                                       minlength="2" 
+                                       maxlength="50"
+                                       pattern="[A-Za-z\s]+" 
+                                       placeholder="Enter your first name"
+                                       autocomplete="given-name"
+                                       title="First name should only contain letters and spaces">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="lastName">Last Name <span class="required">*</span></label>
+                                <input type="text" 
+                                       id="lastName" 
+                                       name="lastName" 
+                                       required 
+                                       minlength="2" 
+                                       maxlength="50"
+                                       pattern="[A-Za-z\s]+" 
+                                       placeholder="Enter your last name"
+                                       autocomplete="family-name"
+                                       title="Last name should only contain letters and spaces">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address <span class="required">*</span></label>
+                                <input type="email" 
+                                       id="email" 
+                                       name="email" 
+                                       required 
+                                       placeholder="user@example.com"
+                                       autocomplete="email"
+                                       title="Please enter a valid email address">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" 
+                                       id="phone" 
+                                       name="phone" 
+                                       pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                                       placeholder="123-456-7890"
+                                       autocomplete="tel"
+                                       title="Phone number format: 123-456-7890">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="birthDate">Date of Birth</label>
+                                <input type="date" 
+                                       id="birthDate" 
+                                       name="birthDate"
+                                       min="1900-01-01" 
+                                       max="2024-12-31"
+                                       autocomplete="bdate">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="website">Personal Website</label>
+                                <input type="url" 
+                                       id="website" 
+                                       name="website" 
+                                       placeholder="https://www.example.com"
+                                       autocomplete="url">
+                            </div>
+                        </div>
+                    </fieldset>
+                    
+                    <!-- Account Settings Fieldset -->
+                    <fieldset>
+                        <legend>Account Settings</legend>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="username">Username <span class="required">*</span></label>
+                                <input type="text" 
+                                       id="username" 
+                                       name="username" 
+                                       required 
+                                       minlength="3" 
+                                       maxlength="20"
+                                       pattern="[a-zA-Z0-9_]+" 
+                                       placeholder="Enter username"
+                                       autocomplete="username"
+                                       title="Username can only contain letters, numbers, and underscores">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="password">Password <span class="required">*</span></label>
+                                <input type="password" 
+                                       id="password" 
+                                       name="password" 
+                                       required 
+                                       minlength="8" 
+                                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                       placeholder="Enter secure password"
+                                       autocomplete="new-password"
+                                       title="Password must contain at least 8 characters with one uppercase letter, one lowercase letter, and one number">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password <span class="required">*</span></label>
+                            <input type="password" 
+                                   id="confirmPassword" 
+                                   name="confirmPassword" 
+                                   required 
+                                   placeholder="Confirm your password"
+                                   autocomplete="new-password">
+                        </div>
+                    </fieldset>
+                    
+                    <!-- Preferences Fieldset -->
+                    <fieldset>
+                        <legend>Preferences & Settings</legend>
+                        
+                        <div class="form-group">
+                            <label for="country">Country <span class="required">*</span></label>
+                            <select id="country" name="country" required autocomplete="country">
+                                <option value="">Select your country</option>
+                                <option value="us">United States</option>
+                                <option value="ca">Canada</option>
+                                <option value="uk">United Kingdom</option>
+                                <option value="au">Australia</option>
+                                <option value="de">Germany</option>
+                                <option value="fr">France</option>
+                                <option value="jp">Japan</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Preferred Contact Method <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="contactMethod" value="email" required>
+                                    Email
+                                </label>
+                                <label>
+                                    <input type="radio" name="contactMethod" value="phone" required>
+                                    Phone
+                                </label>
+                                <label>
+                                    <input type="radio" name="contactMethod" value="mail" required>
+                                    Mail
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Interests (Select all that apply)</label>
+                            <div class="checkbox-group">
+                                <label>
+                                    <input type="checkbox" name="interests" value="technology">
+                                    Technology
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="interests" value="sports">
+                                    Sports
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="interests" value="music">
+                                    Music
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="interests" value="travel">
+                                    Travel
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="interests" value="cooking">
+                                    Cooking
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="experience">Years of Experience</label>
+                                <input type="number" 
+                                       id="experience" 
+                                       name="experience" 
+                                       min="0" 
+                                       max="50" 
+                                       step="1"
+                                       placeholder="0">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="salary">Expected Salary Range</label>
+                                <input type="range" 
+                                       id="salary" 
+                                       name="salary" 
+                                       min="20000" 
+                                       max="200000" 
+                                       step="5000" 
+                                       value="50000"
+                                       oninput="document.getElementById('salaryValue').textContent = '$' + this.value.toLocaleString()">
+                                <output id="salaryValue">$50,000</output>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="favoriteColor">Favorite Color</label>
+                            <input type="color" 
+                                   id="favoriteColor" 
+                                   name="favoriteColor" 
+                                   value="#3498db">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="startTime">Preferred Start Time</label>
+                                <input type="time" 
+                                       id="startTime" 
+                                       name="startTime" 
+                                       min="06:00" 
+                                       max="10:00">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="availableDate">Available From</label>
+                                <input type="date" 
+                                       id="availableDate" 
+                                       name="availableDate" 
+                                       min="2024-01-01">
+                            </div>
+                        </div>
+                    </fieldset>
+                    
+                    <!-- Additional Information Fieldset -->
+                    <fieldset>
+                        <legend>Additional Information</legend>
+                        
+                        <div class="form-group">
+                            <label for="bio">Tell us about yourself</label>
+                            <textarea id="bio" 
+                                      name="bio" 
+                                      rows="5" 
+                                      maxlength="500"
+                                      placeholder="Share a brief description about yourself, your goals, and interests..."
+                                      title="Maximum 500 characters allowed"></textarea>
+                            <small>Maximum 500 characters</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="referral">How did you hear about us?</label>
+                            <input type="text" 
+                                   id="referral" 
+                                   name="referral" 
+                                   list="referralOptions"
+                                   placeholder="Start typing or select from suggestions"
+                                   autocomplete="off">
+                            <datalist id="referralOptions">
+                                <option value="Google Search">
+                                <option value="Social Media">
+                                <option value="Friend/Family">
+                                <option value="Online Advertisement">
+                                <option value="Professional Network">
+                                <option value="Conference/Event">
+                                <option value="Other">
+                            </datalist>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="companyCode">Company Code (Read-only)</label>
+                            <input type="text" 
+                                   id="companyCode" 
+                                   name="companyCode" 
+                                   value="DEMO-2024-HTML5" 
+                                   readonly
+                                   title="This field is read-only and cannot be modified">
+                            <small>This field is automatically generated and cannot be edited</small>
+                        </div>
+                        
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" name="newsletter" value="yes" checked>
+                                Subscribe to our newsletter for updates and tips
+                            </label>
+                            <label>
+                                <input type="checkbox" name="terms" value="agreed" required>
+                                I agree to the <a href="#" target="_blank">Terms of Service</a> and <a href="#" target="_blank">Privacy Policy</a> <span class="required">*</span>
+                            </label>
+                        </div>
+                    </fieldset>
+                    
+                    <div class="form-group" style="text-align: center; margin-top: 2rem;">
+                        <input type="submit" value="Submit Registration" class="submit-btn">
+                    </div>
+                </form>
+            </section>
+        </main>
+        
+        <footer style="background: #2c3e50; color: white; text-align: center; padding: 1rem;">
+            <p>&copy; 2024 Enhanced HTML5 Demo. Showcasing semantic structure, accessibility, and validation.</p>
+        </footer>
+    </div>
+</body>
+</html>
